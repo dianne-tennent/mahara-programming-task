@@ -18,7 +18,10 @@
   "author": "EDA",
   "license": "ISC",
   "homepage": "https://github.com/dev-academy-challenges/knex-todo-cli#readme",
-  "dependencies": {},
+  "dependencies": {
+    "knex": "^0.95.7",
+    "sqlite3": "^5.0.2"
+  },
   "devDependencies": {
     "eslint": "7.9.0",
     "eslint-config-eda": "0.1.4",

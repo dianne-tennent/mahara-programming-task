@@ -10,13 +10,27 @@ We're building a simple command-line tool to manage our list of todos. We're fin
 * Install dependencies.
 
   ```sh
-  npm i knex sqlite3
+  npm i knex sqlite3 
+  npm i minimist
   ```
+* minimist dependency turns argv into an object
+node example/parse.js -a beep -b boop
+{ _: [], a: 'beep', b: 'boop' }
 
+node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
+{ _: [ 'foo', 'bar', 'baz' ],
+   x: 3,
+   y: 4,
+   n: 5,
+   a: true,
+   b: true,
+   c: true,
+   beep: 'boop' }
+   
 * Set file permissions.
 
   ```sh
-  chmod +x todo
+  chmod +x user_upload.js
   ```
 
 Since this is a CLI (command-line interface) tool, instead of running our app using `node todo list`, we'd like to be able to run it like any other utility/script on our computer to make it easier to use. Running `chmod +x todo` in your terminal adds the executable flag to the file. Now you can run it in your console using `./todo list`. This means our programme will begin with the `todo` file. Note: if you run `./todo list` now, you will get an error because we still need to complete some more steps before we can show the contents of our database.
