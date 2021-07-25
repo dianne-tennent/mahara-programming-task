@@ -45,8 +45,6 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
         return utils.emailValidator(element)
       })
 
-      console.log(csvData)
-
       //convert csvData into a list of entries ready for database
       let dbEntries = []
       for (let i = 0; i < csvData.name.length; i++) {
@@ -54,10 +52,10 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
         dbEntries.push(newObject)
       }
 
-      console.log(dbEntries)
+      console.log("Here's your data: ", dbEntries)
 
       //insert into knex db
-      //return db.insertUserData(dbEntries)
+      return db.insertUserData(dbEntries)
 
 
 
