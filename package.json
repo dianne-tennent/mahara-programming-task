@@ -19,6 +19,7 @@
   "license": "ISC",
   "homepage": "https://github.com/dev-academy-challenges/knex-todo-cli#readme",
   "dependencies": {
+    "csv": "^5.5.0",
     "knex": "^0.95.7",
     "mysql": "^2.18.1",
     "sqlite3": "^5.0.2"
