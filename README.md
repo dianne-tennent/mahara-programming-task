@@ -38,15 +38,15 @@ In your terminal, run:
   npx knex migrate:latest
   ```
 
-And if you want to rest the database:
+And if you want to reset the database:
 ```sh
 npx knex seed:run
 ```
 
 * Uploading your csv
 
-Add your csv file to the root directory of this folder
-Then simply type 
+Add your csv file to the root directory of this folder.
+Then simply type:
 ```sh
 ./user_uploads --file='<your filename>'
 ```
