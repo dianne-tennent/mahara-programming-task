@@ -11,12 +11,13 @@ function nameFormatter(string) {
             //remove if non alphabetical
             string.splice(i, 1)
         } else {
+            //set all letters to lower case
             element = element.toLowerCase()
             return element
         }
     })
 
-    //finally, capitalise first letter
+    //capitalise first letter
     string[0] = string[0].toUpperCase()
 
     //return to string format

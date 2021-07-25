@@ -1,7 +1,14 @@
 #!/usr/bin/env node
+
+//csv parser
 const csv = require('csv');
+
+//file system access
 const fs = require('fs')
+
+//database functions
 const db = require('./db')
+
 //import data processing functions from utils
 const utils = require('./utils')
 
@@ -18,6 +25,7 @@ if(userInputs.hasOwnProperty('help')) {
 //create empy array to hold csv file data
 const csvData = {name: [], surname: [], email: []};
 
+//read file
 fs.createReadStream(__dirname + '/' + userInputs.file)
     .pipe(
       csv.parse({
@@ -52,7 +60,7 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
         return utils.emailValidator(element)
       })
 
-      //convert csvData into a list of entries ready for database
+      //convert csvData into a list of object entries ready for database
       let dbEntries = []
       for (let i = 0; i < csvData.name.length; i++) {
         let newObject = {name: csvData.name[i], surname: csvData.surname[i], email: csvData.email[i]}
@@ -62,7 +70,7 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
       console.log("Here's your data: ", dbEntries)
 
       if(!userInputs.hasOwnProperty('dry_run')) {
-        //insert into knex db
+        //insert into knex db if not a dry_run
         return db.insertUserData(dbEntries)
       }
 
@@ -71,31 +79,3 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
     }) // end of data processing
 
 
-
-
-
-//acccess first item of argv array
-const cmd = userInputs._[0]
-
-
-
-// //handle command line directives
-// if(userInputs.hasOwnProperty('help')) {
-//   console.log("help info")
-//   //print help info
-// } else if (userInputs.hasOwnProperty('file') && userInputs.hasOwnProperty('dry_run')) {
-//   //run without altering db
-//   console.log("run without altering db, filename is ", userInputs.file)
-// } else {
-//   //run full script
-//   console.log("Running full script, filename is ", userInputs.file)
-//   console.log(userInputs)
-//   //commands.createTable()
-// }
-
-////functions required:
-// createTable() called 'users' with column names: id, name, surname, email, created_at
-
-// processData() - take csv input, convert to format able to be inserted into db i.e. list of objects with key-value pairs
-
-// insertData() - take list of objects and insert into db
