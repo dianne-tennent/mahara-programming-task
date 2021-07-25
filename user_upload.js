@@ -2,12 +2,19 @@
 const csv = require('csv');
 const fs = require('fs')
 const db = require('./db')
-//command line directives
-const userInputs = require('minimist')(process.argv.slice(2))
-//console.log("userInputs: ", userInputs)
-
 //import data processing functions from utils
 const utils = require('./utils')
+
+//access command line directives
+const userInputs = require('minimist')(process.argv.slice(2))
+
+//check for --help flag
+if(userInputs.hasOwnProperty('help')) {
+  return console.log(
+    "Help menu:\n\n--file='csv file name' - this is the name of the CSV to be parsed. It must be in the current working directory.\n\n--dry_run - this can be used with the --file directive in the instance that we want to run the script but not insert into the DB. All other functions will be executed, but the database won't be altered."
+  )
+}
+
 //create empy array to hold csv file data
 const csvData = {name: [], surname: [], email: []};
 
@@ -54,8 +61,10 @@ fs.createReadStream(__dirname + '/' + userInputs.file)
 
       console.log("Here's your data: ", dbEntries)
 
-      //insert into knex db
-      return db.insertUserData(dbEntries)
+      if(!userInputs.hasOwnProperty('dry_run')) {
+        //insert into knex db
+        return db.insertUserData(dbEntries)
+      }
 
 
 
