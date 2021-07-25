@@ -46,11 +46,16 @@ npx knex seed:run
 * Uploading your csv
 
 Add your csv file to the root directory of this folder.
+
 Then simply type:
 ```sh
-./user_uploads --file='<your filename>'
+./user_upload.js --file='<your filename>'
 ```
 into the command line and press enter
+
+To run the script without inserting into db, run:
+```sh
+./user_upload.js --file='<your filename>' --dry_run
 
 You can access your sqlite database by importing the dev.sqlite3 file into here: https://inloop.github.io/sqlite-viewer/
 
