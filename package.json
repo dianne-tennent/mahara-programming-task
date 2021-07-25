@@ -20,6 +20,7 @@
   "homepage": "https://github.com/dev-academy-challenges/knex-todo-cli#readme",
   "dependencies": {
     "knex": "^0.95.7",
+    "mysql": "^2.18.1",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
